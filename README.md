@@ -8,6 +8,54 @@ This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.
 <img src="art/art.gif" width="33.33%">
 
 
+## Sample Usage
+
+### STEP 1
+Create [SimpleExoPlayer](https://google.github.io/ExoPlayer/guide.html#creating-the-player) instance. 
+In this case, play MP4 file. <br>
+Read [this](https://google.github.io/ExoPlayer/guide.html#add-exoplayer-as-a-dependency) if you want to play other video formats. This library contains EXOPlayer core r2.4.0.
+```JAVA
+    BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+    TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
+    TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
+
+    // Measures bandwidth during playback. Can be null if not required.
+    DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter();
+    // Produces DataSource instances through which media data is loaded.
+    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"), defaultBandwidthMeter);
+    // Produces Extractor instances for parsing the media data.
+    ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
+    // This is the MediaSource representing the media to be played.
+    MediaSource videoSource = new ExtractorMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG), dataSourceFactory, extractorsFactory, null, null);
+
+    // SimpleExoPlayer
+    player = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
+    // Prepare the player with the source.
+    player.prepare(videoSource);
+    player.setPlayWhenReady(true);
+
+```
+
+
+### STEP 2
+Create [EPlayerView](https://github.com/MasayukiSuda/ExpPlayerFilter/blob/master/epf/src/main/java/com/daasuu/epf/EPlayerView.java) and set SimpleExoPlayer to EPlayerView.
+
+```JAVA
+    ePlayerView = new EPlayerView(this);
+    // set SimpleExoPlayer
+    ePlayerView.setSimpleExoPlayer(player);
+    ePlayerView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    ((MovieWrapperView) findViewById(R.id.layout_movie_wrapper)).addView(ePlayerView);
+    ePlayerView.onResume();
+```
+### STEP 3
+Set Filter. Filters is [here](https://github.com/MasayukiSuda/ExpPlayerFilter/tree/master/epf/src/main/java/com/daasuu/epf/filter).<br>
+Custom filters can be created by inheriting [GlFilter.java](https://github.com/MasayukiSuda/ExpPlayerFilter/blob/master/epf/src/main/java/com/daasuu/epf/filter/GlFilter.java).
+```JAVA
+    ePlayerView.setGlFilter(new GlSepiaFilter());
+```
+
+
 ## Special Thanks to
 * [android-gpuimage](https://github.com/CyberAgent/android-gpuimage)
 
