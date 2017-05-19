@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExoPlayerFilter</string>
+    <string name="play">play</string>
+    <string name="pause">pause</string>
+</resources>
