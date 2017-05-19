@@ -46,6 +46,7 @@ Create [EPlayerView](https://github.com/MasayukiSuda/ExpPlayerFilter/blob/master
     // set SimpleExoPlayer
     ePlayerView.setSimpleExoPlayer(player);
     ePlayerView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    // add ePlayerView to WrapperView
     ((MovieWrapperView) findViewById(R.id.layout_movie_wrapper)).addView(ePlayerView);
     ePlayerView.onResume();
 ```
