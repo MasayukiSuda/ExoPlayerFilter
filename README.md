@@ -3,8 +3,7 @@
 <img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat">
 [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
-This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime.
-
+This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and contains EXOPlayer core r2.4.0.<br>
 <img src="art/art.gif" width="33.33%">
 
 
@@ -14,7 +13,6 @@ This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.
 Create [SimpleExoPlayer](https://google.github.io/ExoPlayer/guide.html#creating-the-player) instance. 
 In this case, play MP4 file. <br>
 Read [this](https://google.github.io/ExoPlayer/guide.html#add-exoplayer-as-a-dependency) if you want to play other video formats. <br>
-This library contains EXOPlayer core r2.4.0.
 ```JAVA
     BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
     TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
@@ -23,14 +21,14 @@ This library contains EXOPlayer core r2.4.0.
     // Measures bandwidth during playback. Can be null if not required.
     DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter();
     // Produces DataSource instances through which media data is loaded.
-    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"), defaultBandwidthMeter);
+    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, "yourApplicationName"), defaultBandwidthMeter);
     // Produces Extractor instances for parsing the media data.
     ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
     // This is the MediaSource representing the media to be played.
-    MediaSource videoSource = new ExtractorMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG), dataSourceFactory, extractorsFactory, null, null);
+    MediaSource videoSource = new ExtractorMediaSource(Uri.parse(MP4_URL), dataSourceFactory, extractorsFactory, null, null);
 
     // SimpleExoPlayer
-    player = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
+    player = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
     // Prepare the player with the source.
     player.prepare(videoSource);
     player.setPlayWhenReady(true);
