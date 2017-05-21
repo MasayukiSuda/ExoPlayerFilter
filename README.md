@@ -3,7 +3,7 @@
 <img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat">
 [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
-This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and contains EXOPlayer core r2.4.0.<br>
+This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> contains EXOPlayer core r2.4.0.<br>
 <img src="art/art.gif" width="33.33%">
 
 ## Gradle
