@@ -6,6 +6,14 @@
 This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and contains EXOPlayer core r2.4.0.<br>
 <img src="art/art.gif" width="33.33%">
 
+## Gradle
+```groovy
+    dependencies {
+        // jCenter
+        compile 'com.daasuu:ExoPlayerFilter:0.1.0'
+    }
+```
+
 
 ## Sample Usage
 
