@@ -13,7 +13,7 @@ This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.
         compile 'com.daasuu:ExoPlayerFilter:0.1.0'
     }
 ```
-
+This library contains EXOPlayer core r2.4.0
 
 ## Sample Usage
 
