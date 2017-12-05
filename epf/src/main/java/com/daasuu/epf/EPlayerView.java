@@ -43,7 +43,7 @@ public class EPlayerView extends GLSurfaceView implements SimpleExoPlayer.VideoL
             this.player = null;
         }
         this.player = player;
-        this.player.setVideoListener(this);
+        this.player.addVideoListener(this);
         this.renderer.setSimpleExoPlayer(player);
         return this;
     }
