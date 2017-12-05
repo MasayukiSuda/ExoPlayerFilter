@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION
     defaultConfig {
+        minSdkVersion COMPILE_MIN_SDK_VERSION as int
+        targetSdkVersion COMPILE_SDK_VERSION as int
+
         applicationId "com.daasuu.exoplayerfilter"
-        minSdkVersion 16
-        targetSdkVersion 25
+
         versionCode 1
         versionName "1.0"
     }
@@ -20,7 +22,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.4.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
 
 
     compile project(':epf')
