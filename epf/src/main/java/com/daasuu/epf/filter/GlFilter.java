@@ -94,7 +94,6 @@ public class GlFilter {
     }
 
 
-    // 違う部分。DeleteShaderとかはしていない。
     public void release() {
         GLES20.glDeleteProgram(program);
         program = 0;
@@ -108,12 +107,6 @@ public class GlFilter {
         handleMap.clear();
     }
 
-    //  リセットは行っていない。
-    //    GLES20.glViewport(0, 0, out.width(), out.height());
-    //
-    //    GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    //    GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
-    //
     public void draw(final int texName, final EFramebufferObject fbo) {
         useProgram();
 
