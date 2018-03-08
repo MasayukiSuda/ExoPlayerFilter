@@ -26,7 +26,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:26.1.0'
-    compileOnly 'com.google.android.exoplayer:exoplayer-core:2.6.1'
+    compileOnly 'com.google.android.exoplayer:exoplayer-core:2.7.0'
 }
 
 publish {

@@ -45,10 +45,7 @@ public class EFramebufferObject {
 
     public void setup(final int width, final int height) {
         final int[] args = new int[1];
-        // glGetIntegervは端末の固有の情報を取り出している。
-        // ただgetしてcpu上に乗せているだけ。
 
-        // ここでは最大のtextureのサイズ
         GLES20.glGetIntegerv(GL_MAX_TEXTURE_SIZE, args, 0);
         if (width > args[0] || height > args[0]) {
             throw new IllegalArgumentException("GL_MAX_TEXTURE_SIZE " + args[0]);

@@ -27,5 +27,5 @@ dependencies {
 
     compile project(':epf')
 
-    compile 'com.google.android.exoplayer:exoplayer-core:2.6.1'
+    compile 'com.google.android.exoplayer:exoplayer-core:2.7.0'
 }
