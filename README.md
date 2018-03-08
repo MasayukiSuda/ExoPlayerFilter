@@ -3,18 +3,18 @@
 <img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat">
 [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
-This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> depends EXOPlayer core 2.6.1.<br>
+This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> depends EXOPlayer core 2.7.0.<br>
 <img src="art/art.gif" width="33.33%">
 
 ## Gradle
 ```groovy
     dependencies {
         // jCenter
-        implementation 'com.daasuu:ExoPlayerFilter:0.2.0'
-        implementation 'com.google.android.exoplayer:exoplayer-core:2.6.1'
+        implementation 'com.daasuu:ExoPlayerFilter:0.2.1'
+        implementation 'com.google.android.exoplayer:exoplayer-core:2.7.0'
     }
 ```
-This library depends ExoPlayer core 2.6.1
+This library depends ExoPlayer core 2.7.0
 
 ## Sample Usage
 
