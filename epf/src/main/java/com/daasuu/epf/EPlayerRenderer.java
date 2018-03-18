@@ -182,4 +182,13 @@ class EPlayerRenderer extends EFrameBufferObjectRenderer implements SurfaceTextu
         this.simpleExoPlayer = simpleExoPlayer;
     }
 
+    void release() {
+        if (glFilter != null) {
+            glFilter.release();
+        }
+        if (previewTexture != null) {
+            previewTexture.release();
+        }
+    }
+
 }
