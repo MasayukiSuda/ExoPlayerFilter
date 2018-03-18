@@ -10,7 +10,7 @@ This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.
 ```groovy
     dependencies {
         // jCenter
-        implementation 'com.daasuu:ExoPlayerFilter:0.2.1'
+        implementation 'com.daasuu:ExoPlayerFilter:0.2.2'
         implementation 'com.google.android.exoplayer:exoplayer-core:2.7.0'
     }
 ```
