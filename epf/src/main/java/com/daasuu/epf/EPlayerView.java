@@ -53,6 +53,10 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
         renderer.setGlFilter(glFilter);
     }
 
+    public void setPlayerScaleType(PlayerScaleType playerScaleType) {
+        this.playerScaleType = playerScaleType;
+        requestLayout();
+    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
