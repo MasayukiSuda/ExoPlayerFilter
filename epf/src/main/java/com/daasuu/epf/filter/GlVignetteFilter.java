@@ -15,7 +15,6 @@ public class GlVignetteFilter extends GlFilter {
                     "uniform lowp sampler2D sTexture;" +
 
                     "uniform lowp vec2 vignetteCenter;" +
-                    "uniform lowp vec3 vignetteColor;" +
                     "uniform highp float vignetteStart;" +
                     "uniform highp float vignetteEnd;" +
 
@@ -23,12 +22,11 @@ public class GlVignetteFilter extends GlFilter {
                     "lowp vec3 rgb = texture2D(sTexture, vTextureCoord).rgb;" +
                     "lowp float d = distance(vTextureCoord, vec2(vignetteCenter.x, vignetteCenter.y));" +
                     "lowp float percent = smoothstep(vignetteStart, vignetteEnd, d);" +
-                    "gl_FragColor = vec4(mix(rgb.x, vignetteColor.x, percent), mix(rgb.y, vignetteColor.y, percent), mix(rgb.z, vignetteColor.z, percent), 1.0);" +
+                    "gl_FragColor = vec4(mix(rgb.x, 0.0, percent), mix(rgb.y, 0.0, percent), mix(rgb.z, 0.0, percent), 1.0);" +
                     "}";
 
     private float vignetteCenterX = 0.5f;
     private float vignetteCenterY = 0.5f;
-    private float[] vignetteColor = new float[]{0f, 0f, 0f};
     private float vignetteStart = 0.2f;
     private float vignetteEnd = 0.85f;
 
@@ -58,7 +56,6 @@ public class GlVignetteFilter extends GlFilter {
     @Override
     public void onDraw() {
         GLES20.glUniform2f(getHandle("vignetteCenter"), vignetteCenterX, vignetteCenterY);
-        GLES20.glUniform3fv(getHandle("vignetteColor"), 0, vignetteColor, 0);
         GLES20.glUniform1f(getHandle("vignetteStart"), vignetteStart);
         GLES20.glUniform1f(getHandle("vignetteEnd"), vignetteEnd);
     }

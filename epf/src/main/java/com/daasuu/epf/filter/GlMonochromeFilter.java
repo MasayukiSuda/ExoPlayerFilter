@@ -14,7 +14,6 @@ public class GlMonochromeFilter extends GlFilter {
                     "varying highp vec2 vTextureCoord;" +
                     "uniform lowp sampler2D sTexture;" +
                     "uniform float intensity;" +
-                    "uniform vec3 filterColor;" +
 
                     "const mediump vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);" +
 
@@ -26,9 +25,9 @@ public class GlMonochromeFilter extends GlFilter {
                     "lowp vec4 desat = vec4(vec3(luminance), 1.0);" +
 
                     "lowp vec4 outputColor = vec4(" +
-                    "(desat.r < 0.5 ? (2.0 * desat.r * filterColor.r) : (1.0 - 2.0 * (1.0 - desat.r) * (1.0 - filterColor.r)))," +
-                    "(desat.g < 0.5 ? (2.0 * desat.g * filterColor.g) : (1.0 - 2.0 * (1.0 - desat.g) * (1.0 - filterColor.g)))," +
-                    "(desat.b < 0.5 ? (2.0 * desat.b * filterColor.b) : (1.0 - 2.0 * (1.0 - desat.b) * (1.0 - filterColor.b)))," +
+                    "(desat.r < 0.5 ? (2.0 * desat.r * 0.6) : (1.0 - 2.0 * (1.0 - desat.r) * (1.0 - 0.6)))," +
+                    "(desat.g < 0.5 ? (2.0 * desat.g * 0.45) : (1.0 - 2.0 * (1.0 - desat.g) * (1.0 - 0.45)))," +
+                    "(desat.b < 0.5 ? (2.0 * desat.b * 0.3) : (1.0 - 2.0 * (1.0 - desat.b) * (1.0 - 0.3)))," +
                     "1.0" +
                     ");" +
 
@@ -36,7 +35,6 @@ public class GlMonochromeFilter extends GlFilter {
                     "}";
 
     private float intensity = 1.0f;
-    private float[] filterColor = new float[]{0.6f, 0.45f, 0.3f};
 
     public GlMonochromeFilter() {
         super(DEFAULT_VERTEX_SHADER, FRAGMENT_SHADER);
@@ -53,7 +51,6 @@ public class GlMonochromeFilter extends GlFilter {
     @Override
     public void onDraw() {
         GLES20.glUniform1f(getHandle("intensity"), intensity);
-        GLES20.glUniform3fv(getHandle("filterColor"), 0, filterColor, 0);
     }
 
 }
