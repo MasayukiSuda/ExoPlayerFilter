@@ -14,8 +14,6 @@ import android.widget.SeekBar;
 import com.daasuu.epf.EPlayerView;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
@@ -134,15 +132,12 @@ public class MainActivity extends AppCompatActivity {
         DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter();
         // Produces DataSource instances through which media data is loaded.
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"), defaultBandwidthMeter);
-        // Produces Extractor instances for parsing the media data.
-        ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-        // This is the MediaSource representing the media to be played.
-        MediaSource videoSource = new ExtractorMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG), dataSourceFactory, extractorsFactory, null, null);
+        MediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG));
 
         // SimpleExoPlayer
         player = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
         // Prepare the player with the source.
-        player.prepare(videoSource);
+        player.prepare(mediaSource);
         player.setPlayWhenReady(true);
 
     }
