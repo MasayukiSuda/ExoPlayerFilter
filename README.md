@@ -3,18 +3,18 @@
 <img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat">
 [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
-This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> depends EXOPlayer core 2.7.0.<br>
+This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> depends EXOPlayer core 2.8.4.<br>
 <img src="art/art.gif" width="33.33%">
 
 ## Gradle
 ```groovy
     dependencies {
         // jCenter
-        implementation 'com.daasuu:ExoPlayerFilter:0.2.2'
-        implementation 'com.google.android.exoplayer:exoplayer-core:2.7.0'
+        implementation 'com.daasuu:ExoPlayerFilter:0.2.3'
+        implementation 'com.google.android.exoplayer:exoplayer-core:2.8.4'
     }
 ```
-This library depends ExoPlayer core 2.7.0
+This library depends ExoPlayer core 2.8.4
 
 ## Sample Usage
 
@@ -31,13 +31,11 @@ Read [this](https://google.github.io/ExoPlayer/guide.html#add-exoplayer-as-a-dep
     DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter();
     // Produces DataSource instances through which media data is loaded.
     DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, "yourApplicationName"), defaultBandwidthMeter);
-    // Produces Extractor instances for parsing the media data.
-    ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
     // This is the MediaSource representing the media to be played.
-    MediaSource videoSource = new ExtractorMediaSource(Uri.parse(MP4_URL), dataSourceFactory, extractorsFactory, null, null);
+    MediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(MP4_URL));
 
     // SimpleExoPlayer
-    player = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
+    player = ExoPlayerFactory.newSimpleInstance(context, mediaSource);
     // Prepare the player with the source.
     player.prepare(videoSource);
     player.setPlayWhenReady(true);
