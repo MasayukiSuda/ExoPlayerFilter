@@ -67,6 +67,9 @@ Custom filters can be created by inheriting [GlFilter.java](https://github.com/M
     ePlayerView.setGlFilter(new GlSepiaFilter());
 ```
 
+## AlphaVideo
+Use `AlphaFrameFilter` render video with alpha
+[how-to-create-an-alpha-video](https://felgo.com/doc/felgo-alphavideo/#how-to-create-an-alpha-video)
 
 ## Special Thanks to
 * [android-gpuimage](https://github.com/CyberAgent/android-gpuimage)

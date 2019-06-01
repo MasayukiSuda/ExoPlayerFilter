@@ -123,8 +123,9 @@ public class MainActivity extends AppCompatActivity {
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"));
 
         // This is the MediaSource representing the media to be played.
-        MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG));
+//        MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
+//                .createMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG));
+        MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse("asset:///playdoh_bat.mp4"));
 
         // SimpleExoPlayer
         player = ExoPlayerFactory.newSimpleInstance(this);

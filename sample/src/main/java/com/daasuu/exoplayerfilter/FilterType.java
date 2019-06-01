@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.daasuu.epf.filter.AlphaFrameFilter;
 import com.daasuu.epf.filter.GlBilateralFilter;
 import com.daasuu.epf.filter.GlBoxBlurFilter;
 import com.daasuu.epf.filter.GlBrightnessFilter;
@@ -58,6 +59,7 @@ import java.util.List;
 
 public enum FilterType {
     DEFAULT,
+    ALPHA_FRAME,
     BITMAP_OVERLAY_SAMPLE,
     BILATERAL_BLUR,
     BOX_BLUR,
@@ -98,8 +100,7 @@ public enum FilterType {
     WATERMARK,
     WEAK_PIXEL,
     WHITE_BALANCE,
-    ZOOM_BLUR,
-    ;
+    ZOOM_BLUR;
 
 
     public static List<FilterType> createFilterList() {
@@ -269,6 +270,8 @@ public enum FilterType {
                 return new GlZoomBlurFilter();
             case BITMAP_OVERLAY_SAMPLE:
                 return new GlBitmapOverlaySample(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round));
+            case ALPHA_FRAME:
+                return new AlphaFrameFilter();
             default:
                 return new GlFilter();
         }
