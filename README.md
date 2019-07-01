@@ -3,18 +3,27 @@
 <img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat">
 [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
-This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> depends EXOPlayer core 2.8.4.<br>
+This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> depends EXOPlayer core 2.10.2.<br>
 <img src="art/art.gif" width="33.33%">
 
 ## Gradle
+Step 1. Add the JitPack repository to your build file
+```groovy
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+Step 2. Add the dependency
 ```groovy
     dependencies {
-        // jCenter
-        implementation 'com.daasuu:ExoPlayerFilter:0.2.3'
-        implementation 'com.google.android.exoplayer:exoplayer-core:2.8.4'
+        implementation 'com.github.MasayukiSuda:ExoPlayerFilter:v0.2.4'
+        implementation 'com.google.android.exoplayer:exoplayer-core:2.10.2'
     }
 ```
-This library depends ExoPlayer core 2.8.4
+This library depends ExoPlayer core 2.10.2
 
 ## Sample Usage
 
@@ -23,19 +32,15 @@ Create [SimpleExoPlayer](https://google.github.io/ExoPlayer/guide.html#creating-
 In this case, play MP4 file. <br>
 Read [this](https://google.github.io/ExoPlayer/guide.html#add-exoplayer-as-a-dependency) if you want to play other video formats. <br>
 ```JAVA
-    BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-    TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
-    TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
-
-    // Measures bandwidth during playback. Can be null if not required.
-    DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter();
     // Produces DataSource instances through which media data is loaded.
-    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, "yourApplicationName"), defaultBandwidthMeter);
+    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"));
+
     // This is the MediaSource representing the media to be played.
-    MediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(MP4_URL));
+    MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
+           .createMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG));
 
     // SimpleExoPlayer
-    player = ExoPlayerFactory.newSimpleInstance(context, mediaSource);
+    player = ExoPlayerFactory.newSimpleInstance(this);
     // Prepare the player with the source.
     player.prepare(videoSource);
     player.setPlayWhenReady(true);
