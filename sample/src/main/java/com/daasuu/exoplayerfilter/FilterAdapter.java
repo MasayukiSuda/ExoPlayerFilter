@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +20,12 @@ public class FilterAdapter extends ArrayAdapter<FilterType> {
     }
 
     private final Context context;
-    private final ArrayList<FilterType> values;
+    private final List<FilterType> values;
 
     public FilterAdapter(Context context, int resource, List<FilterType> objects) {
         super(context, resource, objects);
         this.context = context;
-        values = (ArrayList<FilterType>) objects;
+        values = objects;
     }
 
     @Override
