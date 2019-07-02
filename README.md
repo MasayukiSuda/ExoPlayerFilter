@@ -33,7 +33,7 @@ In this case, play MP4 file. <br>
 Read [this](https://google.github.io/ExoPlayer/guide.html#add-exoplayer-as-a-dependency) if you want to play other video formats. <br>
 ```JAVA
     // Produces DataSource instances through which media data is loaded.
-    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"));
+    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(this, "yourApplicationName"));
 
     // This is the MediaSource representing the media to be played.
     MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
