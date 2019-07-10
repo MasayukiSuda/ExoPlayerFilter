@@ -1,11 +1,13 @@
 package com.daasuu.epf;
 
 import android.content.Context;
+import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 
 import com.daasuu.epf.chooser.EConfigChooser;
 import com.daasuu.epf.contextfactory.EContextFactory;
+import com.daasuu.epf.filter.AlphaFrameFilter;
 import com.daasuu.epf.filter.GlFilter;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.video.VideoListener;
@@ -33,9 +35,12 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
         setEGLContextFactory(new EContextFactory());
         setEGLConfigChooser(new EConfigChooser());
 
+        setZOrderOnTop(true);
+        setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+        getHolder().setFormat(PixelFormat.RGBA_8888);
+
         renderer = new EPlayerRenderer(this);
         setRenderer(renderer);
-
     }
 
     public EPlayerView setSimpleExoPlayer(SimpleExoPlayer player) {
@@ -49,8 +54,23 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
         return this;
     }
 
+    private GlFilter filter = null;
     public void setGlFilter(GlFilter glFilter) {
         renderer.setGlFilter(glFilter);
+        if (glFilter != null) {
+            if (glFilter instanceof AlphaFrameFilter) {
+                videoAspect = videoAspect * 2;
+                requestLayout();
+            } else {
+                if (filter != null) {
+                    if (filter instanceof AlphaFrameFilter) {
+                        videoAspect = videoAspect / 2;
+                        requestLayout();
+                    }
+                }
+            }
+        }
+        filter = glFilter;
     }
 
     public void setPlayerScaleType(PlayerScaleType playerScaleType) {
