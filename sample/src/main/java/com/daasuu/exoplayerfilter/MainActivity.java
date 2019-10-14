@@ -2,7 +2,6 @@ package com.daasuu.exoplayerfilter;
 
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,6 +9,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.daasuu.epf.EPlayerView;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
         // This is the MediaSource representing the media to be played.
         MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG));
+                .createMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_SHORT));
 
         // SimpleExoPlayer
         player = ExoPlayerFactory.newSimpleInstance(this);
