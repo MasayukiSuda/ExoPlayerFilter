@@ -130,6 +130,10 @@ public class GlFilter {
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
     }
 
+    public float getVideoAspect(float originalVideoAspect) {
+        return originalVideoAspect;
+    }
+
     protected void onDraw() {
     }
 
