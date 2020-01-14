@@ -3,7 +3,12 @@ package com.daasuu.epf.filter;
 /**
  * Also known as Luma Matte.
  * Used for videos which comprise half of content, and half of alpha-mask / luma-matte.
- * The result is a video containing only content, masked by the alpha-mask to add transparency
+ * The result is a video containing only content, masked by the alpha-mask to add transparency.
+ * <p>
+ * To use this filter, you need to use a EPlayerTranslucentView rather than an ordinary EPlayerView.
+ * <p>
+ * Or, use an EPlayerView and ensure you call `EPlayerView.setZOrderOnTop(true)`
+ * before the surface view's containing window is attached to the window manager
  */
 public class AlphaFrameFilter extends GlFilter {
 
