@@ -29,6 +29,8 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
     /* Video Aspect according to the video, adjusted to the needs of the filter */
     private float adjustedVideoAspect = measuredVideoAspect;
 
+    private GlFilter glFilter = null;
+
     private PlayerScaleType playerScaleType = PlayerScaleType.RESIZE_FIT_WIDTH;
 
     public EPlayerView(Context context) {
@@ -60,13 +62,10 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
     }
 
     public void setGlFilter(GlFilter glFilter) {
+        this.glFilter = glFilter;
         renderer.setGlFilter(glFilter);
 
-        if (glFilter == null) {
-            adjustedVideoAspect = measuredVideoAspect;
-        } else {
-            adjustedVideoAspect = glFilter.getVideoAspect(measuredVideoAspect);
-        }
+        adjustedVideoAspect = calculateAdjustedVideoAspect();
 
         requestLayout();
     }
@@ -114,12 +113,22 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
         // Log.d(TAG, "width = " + width + " height = " + height + " unappliedRotationDegrees = " + unappliedRotationDegrees + " pixelWidthHeightRatio = " + pixelWidthHeightRatio);
         measuredVideoAspect = ((float) width / height) * pixelWidthHeightRatio;
+        adjustedVideoAspect = calculateAdjustedVideoAspect();
         // Log.d(TAG, "measuredVideoAspect = " + measuredVideoAspect);
+
         requestLayout();
     }
 
     @Override
     public void onRenderedFirstFrame() {
         // do nothing
+    }
+
+    private float calculateAdjustedVideoAspect() {
+        if (glFilter == null) {
+            return measuredVideoAspect;
+        } else {
+            return glFilter.getVideoAspect(measuredVideoAspect);
+        }
     }
 }
