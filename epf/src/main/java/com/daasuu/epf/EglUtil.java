@@ -107,7 +107,7 @@ public class EglUtil {
     }
 
     public static int loadTexture(final Bitmap img, final int usedTexId, final boolean recycle) {
-        int textures[] = new int[1];
+        int[] textures = new int[1];
         if (usedTexId == NO_TEXTURE) {
             GLES20.glGenTextures(1, textures, 0);
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textures[0]);

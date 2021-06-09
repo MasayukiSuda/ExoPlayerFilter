@@ -10,7 +10,7 @@ import com.daasuu.epf.filter.GlPreviewFilter;
 
 class ESurfaceTexture implements SurfaceTexture.OnFrameAvailableListener {
 
-    private SurfaceTexture surfaceTexture;
+    private final SurfaceTexture surfaceTexture;
     private SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener;
 
     ESurfaceTexture(final int texName) {

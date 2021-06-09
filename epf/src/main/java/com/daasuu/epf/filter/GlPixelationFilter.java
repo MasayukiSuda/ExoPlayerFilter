@@ -28,7 +28,7 @@ public class GlPixelationFilter extends GlFilter {
         super(DEFAULT_VERTEX_SHADER, PIXELATION_FRAGMENT_SHADER);
     }
 
-    private float pixel = 1f;
+    private final float pixel = 1f;
     private float imageWidthFactor = 1f / 720;
     private float imageHeightFactor = 1f / 720;
 

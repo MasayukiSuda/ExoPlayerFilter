@@ -45,7 +45,7 @@ public class GlToneCurveFilter extends GlFilter {
 
     private final LinkedList<Runnable> runOnDraw;
 
-    private int[] textures = new int[1];
+    private final int[] textures = new int[1];
 
     private byte[] toneCurveByteArray;
 
@@ -275,7 +275,7 @@ public class GlToneCurveFilter extends GlFilter {
         if (n < 1) {
             return null;
         }
-        double sd[] = new double[n];
+        double[] sd = new double[n];
 
         // From NSMutableArray to sd[n];
         for (int i = 0; i < n; i++) {
@@ -321,8 +321,8 @@ public class GlToneCurveFilter extends GlFilter {
             return null;
         }
 
-        double matrix[][] = new double[n][3];
-        double result[] = new double[n];
+        double[][] matrix = new double[n][3];
+        double[] result = new double[n];
         matrix[0][1] = 1;
         // What about matrix[0][1] and matrix[0][0]? Assuming 0 for now (Brad L.)
         matrix[0][0] = 0;

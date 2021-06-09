@@ -1,6 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.daasuu.epf">
+<manifest package="com.daasuu.epf">
 
-    <application/>
+    <application />
 
 </manifest>
