@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 
 public class GlWatermarkFilter extends GlOverlayFilter {
 
-    private Bitmap bitmap;
+    private final Bitmap bitmap;
     private Position position = Position.LEFT_TOP;
 
     public GlWatermarkFilter(Bitmap bitmap) {

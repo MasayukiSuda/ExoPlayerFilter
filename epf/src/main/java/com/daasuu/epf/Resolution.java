@@ -31,9 +31,7 @@ public class Resolution implements Serializable {
         Resolution that = (Resolution) o;
 
         if (height != that.height) return false;
-        if (width != that.width) return false;
-
-        return true;
+        return width == that.width;
     }
 
     @Override

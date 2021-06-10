@@ -25,8 +25,8 @@ public class GlVignetteFilter extends GlFilter {
                     "gl_FragColor = vec4(mix(rgb.x, 0.0, percent), mix(rgb.y, 0.0, percent), mix(rgb.z, 0.0, percent), 1.0);" +
                     "}";
 
-    private float vignetteCenterX = 0.5f;
-    private float vignetteCenterY = 0.5f;
+    private final float vignetteCenterX = 0.5f;
+    private final float vignetteCenterY = 0.5f;
     private float vignetteStart = 0.2f;
     private float vignetteEnd = 0.85f;
 

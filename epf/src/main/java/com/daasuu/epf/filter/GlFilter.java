@@ -3,10 +3,10 @@ package com.daasuu.epf.filter;
 import android.content.res.Resources;
 import android.opengl.GLES20;
 
-import java.util.HashMap;
-
-import com.daasuu.epf.EglUtil;
 import com.daasuu.epf.EFramebufferObject;
+import com.daasuu.epf.EglUtil;
+
+import java.util.HashMap;
 
 import static android.opengl.GLES20.GL_FLOAT;
 import static android.opengl.GLES20.GL_FRAGMENT_SHADER;

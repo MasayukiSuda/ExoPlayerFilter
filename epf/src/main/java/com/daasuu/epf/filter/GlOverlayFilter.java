@@ -14,7 +14,7 @@ import com.daasuu.epf.Resolution;
 
 public abstract class GlOverlayFilter extends GlFilter {
 
-    private int[] textures = new int[1];
+    private final int[] textures = new int[1];
 
     private Bitmap bitmap = null;
 
