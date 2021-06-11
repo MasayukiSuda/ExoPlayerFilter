@@ -19,7 +19,7 @@ allprojects {
 Step 2. Add the dependency
 ```groovy
     dependencies {
-        implementation 'com.github.MasayukiSuda:ExoPlayerFilter:v0.2.5'
+        implementation 'com.github.MasayukiSuda:ExoPlayerFilter:v0.2.6'
         implementation 'com.google.android.exoplayer:exoplayer-core:2.14.0'
     }
 ```
