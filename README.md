@@ -3,7 +3,7 @@
 <img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat">
 [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
-This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> depends EXOPlayer core 2.10.2.<br>
+This library uses OpenGL Shaders to apply effects on [ExoPlayer](https://github.com/google/ExoPlayer) video at Runtime and <br> depends EXOPlayer core 2.14.0.<br>
 <img src="art/art.gif" width="33.33%">
 
 ## Gradle
@@ -20,10 +20,10 @@ Step 2. Add the dependency
 ```groovy
     dependencies {
         implementation 'com.github.MasayukiSuda:ExoPlayerFilter:v0.2.5'
-        implementation 'com.google.android.exoplayer:exoplayer-core:2.10.2'
+        implementation 'com.google.android.exoplayer:exoplayer-core:2.14.0'
     }
 ```
-This library depends ExoPlayer core 2.10.2
+This library depends ExoPlayer core 2.14.0
 
 ## Sample Usage
 
@@ -33,16 +33,14 @@ In this case, play MP4 file. <br>
 Read [this](https://google.github.io/ExoPlayer/guide.html#add-exoplayer-as-a-dependency) if you want to play other video formats. <br>
 ```JAVA
     // Produces DataSource instances through which media data is loaded.
-    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(this, "yourApplicationName"));
-
-    // This is the MediaSource representing the media to be played.
-    MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
-           .createMediaSource(Uri.parse(Constant.STREAM_URL_MP4_VOD_LONG));
+    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"));
 
     // SimpleExoPlayer
-    player = ExoPlayerFactory.newSimpleInstance(this);
-    // Prepare the player with the source.
-    player.prepare(videoSource);
+    player = new SimpleExoPlayer.Builder(this)
+            .setMediaSourceFactory(new ProgressiveMediaSource.Factory(dataSourceFactory))
+            .build();
+    player.addMediaItem(MediaItem.fromUri(Constant.STREAM_URL_MP4_VOD_SHORT));
+    player.prepare();
     player.setPlayWhenReady(true);
 
 ```
