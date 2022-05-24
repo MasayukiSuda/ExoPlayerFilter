@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
-group = 'com.github.jamiehiggins'
+
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
