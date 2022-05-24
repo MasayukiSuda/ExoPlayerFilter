@@ -1,5 +1,6 @@
 package com.daasuu.exoplayerfilter;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -117,17 +119,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpSimpleExoPlayer() {
 
-
         // Produces DataSource instances through which media data is loaded.
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"));
 
-        // SimpleExoPlayer
-        player = new SimpleExoPlayer.Builder(this)
-                .setMediaSourceFactory(new ProgressiveMediaSource.Factory(dataSourceFactory))
-                .build();
-        player.addMediaItem(MediaItem.fromUri(Constant.STREAM_URL_MP4_VOD_SHORT));
-        player.prepare();
-        player.setPlayWhenReady(true);
+        try {
+            InputStream is = getAssets().open("green_screen.mp4");
+
+            // SimpleExoPlayer
+            player = new SimpleExoPlayer.Builder(this)
+                    .setMediaSourceFactory(new ProgressiveMediaSource.Factory(dataSourceFactory))
+                    .build();
+            Uri firstVideoUri = Uri.parse("asset:///green_screen.mp4");
+            MediaItem firstItem = MediaItem.fromUri(firstVideoUri);
+
+            player.addMediaItem(firstItem);
+            player.prepare();
+            player.setPlayWhenReady(true);
+        } catch (Exception e) {}
     }
 
 

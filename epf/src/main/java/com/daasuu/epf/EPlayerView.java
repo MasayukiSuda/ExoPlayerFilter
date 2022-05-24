@@ -45,6 +45,7 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
         setEGLConfigChooser(new EConfigChooser(8, 8, 8, 8, 16, 0, EGL_CONTEXT_CLIENT_VERSION));
 
         getHolder().setFormat(PixelFormat.RGBA_8888);
+        setZOrderOnTop(true);
 
         renderer = new EPlayerRenderer(this);
         setRenderer(renderer);

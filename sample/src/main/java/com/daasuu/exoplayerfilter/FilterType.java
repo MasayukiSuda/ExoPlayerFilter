@@ -45,6 +45,7 @@ import com.daasuu.epf.filter.GlWatermarkFilter;
 import com.daasuu.epf.filter.GlWeakPixelInclusionFilter;
 import com.daasuu.epf.filter.GlWhiteBalanceFilter;
 import com.daasuu.epf.filter.GlZoomBlurFilter;
+import com.daasuu.epf.filter.GreenScreenFilter;
 import com.daasuu.exoplayerfilter.filtersample.GlBitmapOverlaySample;
 
 import java.io.IOException;
@@ -58,6 +59,7 @@ import java.util.List;
 
 public enum FilterType {
     DEFAULT,
+    GREEN_SCREEN,
     BITMAP_OVERLAY_SAMPLE,
     BILATERAL_BLUR,
     BOX_BLUR,
@@ -165,6 +167,8 @@ public enum FilterType {
         switch (filterType) {
             case DEFAULT:
                 return new GlFilter();
+            case GREEN_SCREEN:
+                return new GreenScreenFilter();
             case BILATERAL_BLUR:
                 return new GlBilateralFilter();
             case BOX_BLUR:

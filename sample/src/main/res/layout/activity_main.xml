@@ -10,7 +10,8 @@
     <com.daasuu.exoplayerfilter.MovieWrapperView
         android:id="@+id/layout_movie_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#ff0000"/>
 
     <ListView
         android:id="@+id/list"
