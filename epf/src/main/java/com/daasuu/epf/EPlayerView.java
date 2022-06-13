@@ -8,15 +8,16 @@ import android.util.AttributeSet;
 import com.daasuu.epf.chooser.EConfigChooser;
 import com.daasuu.epf.contextfactory.EContextFactory;
 import com.daasuu.epf.filter.GlFilter;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.video.VideoListener;
+import com.google.android.exoplayer2.video.VideoSize;
 
 import static com.daasuu.epf.chooser.EConfigChooser.EGL_CONTEXT_CLIENT_VERSION;
 
 /**
  * Created by sudamasayuki on 2017/05/16.
  */
-public class EPlayerView extends GLSurfaceView implements VideoListener {
+public class EPlayerView extends GLSurfaceView implements Player.Listener {
 
     private final static String TAG = EPlayerView.class.getSimpleName();
 
@@ -39,14 +40,9 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
 
     public EPlayerView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         setEGLContextFactory(new EContextFactory());
-
         setEGLConfigChooser(new EConfigChooser(8, 8, 8, 8, 16, 0, EGL_CONTEXT_CLIENT_VERSION));
-
         getHolder().setFormat(PixelFormat.RGBA_8888);
-        setZOrderOnTop(true);
-
         renderer = new EPlayerRenderer(this);
         setRenderer(renderer);
     }
@@ -57,7 +53,7 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
             this.player = null;
         }
         this.player = player;
-        this.player.addVideoListener(this);
+        this.player.addListener(this);
         this.renderer.setSimpleExoPlayer(player);
         return this;
     }
@@ -108,12 +104,13 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
     }
 
     //////////////////////////////////////////////////////////////////////////
-    // SimpleExoPlayer.VideoListener
+    // Player.Listener
 
     @Override
-    public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
+
+    public void onVideoSizeChanged(VideoSize videoSize) {
         // Log.d(TAG, "width = " + width + " height = " + height + " unappliedRotationDegrees = " + unappliedRotationDegrees + " pixelWidthHeightRatio = " + pixelWidthHeightRatio);
-        measuredVideoAspect = ((float) width / height) * pixelWidthHeightRatio;
+        measuredVideoAspect = ((float) videoSize.width / videoSize.height) * videoSize.pixelWidthHeightRatio;
         adjustedVideoAspect = calculateAdjustedVideoAspect();
         // Log.d(TAG, "measuredVideoAspect = " + measuredVideoAspect);
 

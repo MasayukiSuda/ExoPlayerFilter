@@ -25,10 +25,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
 
 
     implementation project(':epf')
 
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.14.0'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.17.1'
 }

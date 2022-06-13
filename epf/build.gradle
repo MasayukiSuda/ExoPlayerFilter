@@ -3,7 +3,6 @@ apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
-    buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdkVersion COMPILE_MIN_SDK_VERSION as int
@@ -29,6 +28,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    compileOnly 'com.google.android.exoplayer:exoplayer-core:2.14.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    compileOnly 'com.google.android.exoplayer:exoplayer-core:2.17.1'
+
+    androidTestImplementation 'com.google.truth:truth:1.0.1', { exclude group: 'com.google.guava', module:'listenablefuture'}
+    api 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 }
