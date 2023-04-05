@@ -2,13 +2,10 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
-    buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdkVersion COMPILE_MIN_SDK_VERSION as int
         targetSdkVersion COMPILE_SDK_VERSION as int
-        versionCode VERSION_CODE as int
-        versionName VERSION_NAME
     }
     buildTypes {
         release {
@@ -16,7 +13,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
+    lint {
         abortOnError false
     }
 
@@ -24,10 +21,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.daasuu.epf'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     compileOnly 'com.google.android.exoplayer:exoplayer-core:2.14.0'
 }
