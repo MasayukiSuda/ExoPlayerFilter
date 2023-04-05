@@ -30,5 +30,5 @@ dependencies {
 
     implementation project(':epf')
 
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.14.0'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.0'
 }

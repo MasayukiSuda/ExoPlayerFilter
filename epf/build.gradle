@@ -27,5 +27,5 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    compileOnly 'com.google.android.exoplayer:exoplayer-core:2.14.0'
+    compileOnly 'com.google.android.exoplayer:exoplayer-core:2.18.0'
 }

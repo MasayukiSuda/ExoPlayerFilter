@@ -7,13 +7,14 @@ import android.util.AttributeSet;
 import com.daasuu.epf.chooser.EConfigChooser;
 import com.daasuu.epf.contextfactory.EContextFactory;
 import com.daasuu.epf.filter.GlFilter;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.video.VideoListener;
+import com.google.android.exoplayer2.video.VideoSize;
 
 /**
  * Created by sudamasayuki on 2017/05/16.
  */
-public class EPlayerView extends GLSurfaceView implements VideoListener {
+public class EPlayerView extends GLSurfaceView implements Player.Listener {
 
     private final static String TAG = EPlayerView.class.getSimpleName();
 
@@ -44,7 +45,7 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
             this.player = null;
         }
         this.player = player;
-        this.player.addVideoListener(this);
+        this.player.addListener(this);
         this.renderer.setSimpleExoPlayer(player);
         return this;
     }
@@ -90,10 +91,15 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
     }
 
     //////////////////////////////////////////////////////////////////////////
-    // SimpleExoPlayer.VideoListener
+    // Player.Listener
 
     @Override
-    public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
+    public void onVideoSizeChanged(VideoSize videoSize) {
+        int width = videoSize.width;
+        int height = videoSize.height;
+        float pixelWidthHeightRatio = videoSize.pixelWidthHeightRatio;
+        int unappliedRotationDegrees = videoSize.unappliedRotationDegrees;
+
         // Log.d(TAG, "width = " + width + " height = " + height + " unappliedRotationDegrees = " + unappliedRotationDegrees + " pixelWidthHeightRatio = " + pixelWidthHeightRatio);
         videoAspect = ((float) width / height) * pixelWidthHeightRatio;
         // Log.d(TAG, "videoAspect = " + videoAspect);
