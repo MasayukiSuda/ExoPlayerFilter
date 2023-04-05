@@ -28,15 +28,15 @@ This library depends ExoPlayer core 2.18.0
 ## Sample Usage
 
 ### STEP 1
-Create [SimpleExoPlayer](https://google.github.io/ExoPlayer/guide.html#creating-the-player) instance. 
+Create [ExoPlayer](https://exoplayer.dev/hello-world.html#creating-the-player) instance. 
 In this case, play MP4 file. <br>
-Read [this](https://google.github.io/ExoPlayer/guide.html#add-exoplayer-as-a-dependency) if you want to play other video formats. <br>
+Read [this](https://exoplayer.dev/hello-world.html#adding-exoplayer-as-a-dependency) if you want to play other video formats. <br>
 ```JAVA
     // Produces DataSource instances through which media data is loaded.
     DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "yourApplicationName"));
 
     // SimpleExoPlayer
-    player = new SimpleExoPlayer.Builder(this)
+    player = new ExoPlayer.Builder(this)
             .setMediaSourceFactory(new ProgressiveMediaSource.Factory(dataSourceFactory))
             .build();
     player.addMediaItem(MediaItem.fromUri(Constant.STREAM_URL_MP4_VOD_SHORT));
