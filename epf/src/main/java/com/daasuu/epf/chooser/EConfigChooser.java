@@ -30,9 +30,9 @@ public class EConfigChooser implements GLSurfaceView.EGLConfigChooser {
     private final int depthSize;
     private final int stencilSize;
 
-    private static final int EGL_CONTEXT_CLIENT_VERSION = 2;
-
     private static final boolean USE_RGB_888 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
+
+    public static final int EGL_CONTEXT_CLIENT_VERSION = 2;
 
     public EConfigChooser() {
         this(
